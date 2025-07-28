@@ -81,6 +81,7 @@ InitTestScene*.unity*
 
 # Addressables default ignores, before user customizations
 /ServerData
+/[Aa]ssets/**/*.meta
 /[Aa]ssets/StreamingAssets/aa*
 /[Aa]ssets/AddressableAssetsData/link.xml*
 /[Aa]ssets/Addressables_Temp*
@@ -88,6 +89,8 @@ InitTestScene*.unity*
 # files in platform-specific subfolders, for example:
 # /Assets/AddressableAssetsData/OSX/addressables_content_state.bin
 /[Aa]ssets/AddressableAssetsData/*/*.bin*
+/[Aa]ssets/Adaptive*Performance
+/[Aa]ssets/*TerrainAutoUpgrade
 
 # Visual Scripting auto-generated files
 /[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Flow/UnitOptions.db

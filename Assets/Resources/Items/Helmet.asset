@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d843aac4d41bd6e489887b92b95cece5, type: 3}
+  m_Name: Helmet
+  m_EditorClassIdentifier: 
+  itemType: 2
+  bagCapacity: 0
+  isStackable: 0
+  maxStackSize: 1
+  itemName: "\u0428\u043B\u0435\u043C"
+  prefab: {fileID: 919132149155446097, guid: 5785aab4ff0cde64cbd2ff4ce694a9e9, type: 3}
+  icon: {fileID: 21300000, guid: f444db7c25226d445b9128d9ac0b4597, type: 3}
+  description: 
+  itemRarityID: 0
+  itemRarityName: 0
+  itemRarity: 0
+  slotBackground: {fileID: 0}
+  healthRestore: 0
+  hungerRestore: 0
+  thirstRestore: 0
+  manaRestore: 0
+  energyRestore: 0
+  damage: 2
+  damageType: 0
+  elementalDamage: 0
+  attackSpeed: 1
+  durability: 100000
+  range: 1.1
+  enemyCount: 1
+  weaponType: 0
+  armorType: 0
+  craftLevel: 1
+  craftCategory: 0
+  craftItem: {fileID: 0}
+  ingredients: []
+  gameBookCategory: 0
+  gameBookDescription: 
+  gameBookIcon: {fileID: 0}
