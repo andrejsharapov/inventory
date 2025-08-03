@@ -5,25 +5,25 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SelectOptions.unity
     guid: 18b4321cacfc6ac4b81332ce96bf0aa9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GlobalMapScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/Scenes/HomeScene.unity
     guid: 01d4a111cec737c48be908c5f55615a8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/VillageFiji.unity
     guid: 5943fa876c5ac13409b50f9305584c42
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/HomeOfForester.unity
     guid: a859fee1d3a34b24a94a2b2b8250fa6c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/CellarOfStorekeeper.unity
     guid: cee0e8e9c0445fa48b4e68a254078f0d
   m_configObjects:
-    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 26ab465be5379ef49aac95dcd0544cfa, type: 2}
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: fde05030be753664ca942e20abad3f41, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

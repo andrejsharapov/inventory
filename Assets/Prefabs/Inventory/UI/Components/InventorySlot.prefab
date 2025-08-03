@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7813636013691057365}
   - component: {fileID: 1529117622946222687}
   - component: {fileID: 5756936033347488871}
-  - component: {fileID: 1852395245803952786}
   m_Layer: 5
   m_Name: IconBackground
   m_TagString: Untagged
@@ -67,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d151dbd951259654aa55f0a6adebac10, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 05f8a9b7f763ee94b821c772ccc1e6a8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -77,18 +76,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!225 &1852395245803952786
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2723867650588627393}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &3446631670927532333
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +110,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 6}
+  m_AnchoredPosition: {x: 4.200001, y: 0.9000015}
   m_SizeDelta: {x: -12, y: 24}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &621803656472127825
@@ -141,7 +128,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3446631670927532333}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -154,7 +141,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -236,7 +223,6 @@ GameObject:
   - component: {fileID: 6735508451412413760}
   - component: {fileID: 6527605387739246336}
   - component: {fileID: 7303492066734065840}
-  - component: {fileID: 5052217843987607862}
   m_Layer: 5
   m_Name: Icon
   m_TagString: Untagged
@@ -262,7 +248,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -14, y: -14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6527605387739246336
 CanvasRenderer:
@@ -279,7 +265,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4963342500102812530}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -302,18 +288,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!225 &5052217843987607862
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4963342500102812530}
-  m_Enabled: 0
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &5840479538112001938
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,8 +375,7 @@ GameObject:
   - component: {fileID: 4511850428483775062}
   - component: {fileID: 1809159127670561449}
   - component: {fileID: 3606316649192522607}
-  - component: {fileID: 4925221786899929421}
-  - component: {fileID: 4697773611009226308}
+  - component: {fileID: 7282896090921596590}
   m_Layer: 5
   m_Name: InventorySlot
   m_TagString: Untagged
@@ -513,7 +486,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4925221786899929421
+--- !u!114 &7282896090921596590
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -522,46 +495,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6891061488213375865}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Script: {fileID: 11500000, guid: 1861ca81b6a43194fb7ac2c0f75f2ae0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4697773611009226308}
-          m_TargetAssemblyTypeName: InventorySlotUI, Assembly-CSharp
-          m_MethodName: OnSlotClick
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
---- !u!114 &4697773611009226308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6891061488213375865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea86a8e45701ec241a45a4b797f7488a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  countText: {fileID: 6904345189466923355}
-  background: {fileID: 313370823998548912}
-  defaultSprite: {fileID: 21300000, guid: ef302f1fd404ea34e94fb6e1e93f472e, type: 3}
-  selectedSprite: {fileID: 21300000, guid: e1d9547a9a6aa7f49975936a6fa4c9a4, type: 3}
-  unavailableSprite: {fileID: 21300000, guid: d151dbd951259654aa55f0a6adebac10, type: 3}
-  icon: {fileID: 7303492066734065840}
-  iconBackground: {fileID: 5756936033347488871}
-  slot:
-    item: {fileID: 0}
-    count: 0
-  item: {fileID: 0}
+  _quantityText: {fileID: 6904345189466923355}
+  _itemIcon: {fileID: 7303492066734065840}
+  _backgroundIcon: {fileID: 5756936033347488871}
+  _slotIcon: {fileID: 313370823998548912}
+  _defaultSlot: {fileID: 21300000, guid: ef302f1fd404ea34e94fb6e1e93f472e, type: 3}
+  _selectedSlot: {fileID: 21300000, guid: e1d9547a9a6aa7f49975936a6fa4c9a4, type: 3}
+  _tooltipIcon: {fileID: 0}
