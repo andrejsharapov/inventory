@@ -41,6 +41,9 @@ MonoBehaviour:
   durability: 100000
   range: 1.1
   enemyCount: 1
+  weaponType: 0
+  armorType: 0
+  equipmentType: 4
   craftLevel: 1
   craftCategory: 0
   craftItem: {fileID: 0}

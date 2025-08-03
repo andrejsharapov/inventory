@@ -11,6 +11,7 @@ public class Item : ScriptableObject
     public enum DamageType { Physical, Fire, Water, Earth, Air, Light, Dark } // Типы урона
     public enum WeaponType { OneHand, TwoHand, Bow, CrossBow, Shield } //  Подтип для оружия
     public enum ArmorType { Helmet, Chest, Gloves, Legs, Boots } // Подтип для брони
+    public enum EquipmentType { Weapon, Sheild, RangeWeapon, Recipe, Food, Helmet, Chest, Gloves, Legs, Boots } // Все слоты эквипа
     public enum CraftCategory { None, WeaponArmor, FoodDrink, Potions, Spells, Buildings } // Категории для крафта
     public enum GameBookCategory { None, Bestiary, Story }
 
@@ -55,6 +56,7 @@ public class Item : ScriptableObject
     public int enemyCount = 1; // Сколько целей поражает оружие
     public WeaponType weaponType = WeaponType.OneHand;
     public ArmorType armorType = ArmorType.Helmet;
+    public EquipmentType equipmentType = EquipmentType.Weapon;
 
     [Header("Craft Recipe")]
     public int craftLevel = 1;

@@ -39,6 +39,8 @@ MonoBehaviour:
   range: 6
   enemyCount: 1
   weaponType: 2
+  armorType: 0
+  equipmentType: 2
   craftLevel: 1
   craftCategory: 0
   craftItem: {fileID: 0}
