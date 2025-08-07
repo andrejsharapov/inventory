@@ -6,7 +6,6 @@ public class InventorySession : MonoBehaviour
     [SerializeField] private InventoryView _inventoryView;
     
     [Header("Parameters")]
-    //[SerializeField] private Item[] _startItems;
     [SerializeField] private StartItem[] _startItems;
     [SerializeField] private int _slotsCount = 10;
 
@@ -15,7 +14,15 @@ public class InventorySession : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
 
         PlayerInventory = new Inventory(_slotsCount, _startItems);
 

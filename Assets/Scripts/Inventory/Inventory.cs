@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
-using static InventorySession;
-using static UnityEditor.Progress;
+
+using static Item;
 
 public class Inventory : IDisposable
 {
@@ -17,7 +18,7 @@ public class Inventory : IDisposable
     public event Action InventoryChanged;
 
 
-    private void OnEquipmentChanged()
+    private void OnEquipmentChanged(EquipmentType equipmentType, Item newItem)
     {
         InventoryChanged?.Invoke();
     }
@@ -54,7 +55,6 @@ public class Inventory : IDisposable
 
         InventoryChanged?.Invoke();
     }
-
 
     public void RecalculateExtraSlots()
     {
@@ -166,49 +166,18 @@ public class Inventory : IDisposable
     {
         var bagSlots = _extraSlots
             .Where(s => s.OwnerBag == bagItem)
-            .Where(s => s.Item != null)
-            .ToList();
-        if (bagSlots.Count == 0)
-            return true;
-
-        var availableSlots = _baseSlots
-            .Concat(_extraSlots.Where(s => s.OwnerBag != bagItem))
             .ToList();
 
-        var slotQtySnapshot = availableSlots.ToDictionary(s => s, s => s.Quantity);
-
-        foreach (var fromSlot in bagSlots)
+        foreach (var slot in bagSlots)
         {
-            var item = fromSlot.Item;
-            var config = item.ItemConfig;
-            int left = fromSlot.Quantity;
-
-            // stackable first
-            foreach (var slot in availableSlots
-                .Where(s => s.Item?.ItemConfig == config && config.isStackable && slotQtySnapshot[s] < config.maxStackSize))
-            {
-                int canStack = config.maxStackSize - slotQtySnapshot[slot];
-                int moveQty = Math.Min(left, canStack);
-                slotQtySnapshot[slot] += moveQty;
-                left -= moveQty;
-                if (left <= 0) break;
-            }
-
-            while (left > 0)
-            {
-                var emptySlot = availableSlots.FirstOrDefault(s => slotQtySnapshot[s] == 0 && s.Item == null);
-                if (emptySlot == null)
-                    return false;
-
-                int chunk = config.isStackable ? Math.Min(left, config.maxStackSize) : 1;
-                slotQtySnapshot[emptySlot] = chunk;
-                left -= chunk;
-            }
+            if (slot.Item != null || slot.Quantity > 0)
+                return false;
         }
 
         return true;
     }
-    public (bool added, InventorySlot slot) AddItem(InventorySlot inventorySlot) => AddItem(inventorySlot.Item,inventorySlot.Quantity);
+
+    public (bool added, InventorySlot slot) AddItem(InventorySlot inventorySlot) => AddItem(inventorySlot.Item, inventorySlot.Quantity);
     public (bool added, InventorySlot slot) AddItem(Item item, int quantity = 1) => AddItem(InventoryItemFactory.Create(item), quantity);
     public (bool Added, InventorySlot slot) AddItem(InventoryItem item, int quantity = 1)
     {
@@ -315,7 +284,17 @@ public class Inventory : IDisposable
             to.SetItem(from.Item, from.Quantity);
             from.SetItem(tempItem, tempQty);
         }
-        InventoryChanged?.Invoke();
+
+        if (to is EquipmentSlot)
+        {
+            Equipment.OnEquipmentChanged(to.Item.ItemConfig.equipmentType, to.Item.ItemConfig);
+        }
+        else if (from is EquipmentSlot)
+        {
+            Equipment.OnEquipmentChanged(to.Item.ItemConfig.equipmentType, null);
+        }
+        else
+            InventoryChanged?.Invoke();
     }
 
     public bool RemoveItemFromSlot(InventorySlot slot, int quantity = 1)
@@ -359,7 +338,7 @@ public class Inventory : IDisposable
         if (!Slots.Contains(slot))
             throw new InvalidOperationException("Slot does not belong to this inventory.");
         if (slot.Item == null || slot.Quantity <= 1)
-            return false; 
+            return false;
 
         InventorySlot freeSlot = Slots.FirstOrDefault(s => s.Item == null);
         if (freeSlot == null)
@@ -380,6 +359,20 @@ public class Inventory : IDisposable
         return true;
     }
 
+    public bool HasItem(Item itemConfig, int quantity = 1)
+    {
+        int found = 0;
+        foreach (var slot in Slots)
+        {
+            if (slot.Item.ItemConfig == itemConfig)
+                found += slot.Quantity;
+
+            if (found >= quantity)
+                return true;
+        }
+
+        return false;
+    }
 
     public bool HasSpace()
     {
