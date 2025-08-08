@@ -66,6 +66,8 @@ MonoBehaviour:
     _quantity: 3
   - _item: {fileID: 11400000, guid: 69affcf554fc2b74d8828d5265a1cb93, type: 2}
     _quantity: 1
+  - _item: {fileID: 11400000, guid: 4dc93ceb5091ce148a3a0e5840dcb108, type: 2}
+    _quantity: 1
   _slotsCount: 10
 --- !u!114 &7797372187137817058
 MonoBehaviour:
@@ -1406,6 +1408,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7708931416095832429}
     m_Modifications:
+    - target: {fileID: 2898727749494943176, guid: 7e7ca374ae2a77e4ab9d4def33b4c79f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5724599703150582198, guid: 7e7ca374ae2a77e4ab9d4def33b4c79f, type: 3}
       propertyPath: m_Name
       value: Inventory Scene

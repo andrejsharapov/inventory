@@ -258,6 +258,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6813988165231886340}
+  - component: {fileID: 433541747698285630}
   m_Layer: 6
   m_Name: Inventory Scene
   m_TagString: Untagged
@@ -283,6 +284,20 @@ Transform:
   - {fileID: 2463238757537086882}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &433541747698285630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5724599703150582198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5971fb5647e4933a4a50c972a392e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayer: 6
+  includeSelf: 1
 --- !u!1001 &2534137392770115127
 PrefabInstance:
   m_ObjectHideFlags: 0
