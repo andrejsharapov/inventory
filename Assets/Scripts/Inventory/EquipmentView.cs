@@ -30,13 +30,17 @@ public class EquipmentView : MonoBehaviour
         }
 
         DrawSlots();
-        _equipment.EquipmentChanged += DrawSlots;
+        _equipment.EquipmentChanged += OnEquipmentChanged;
     }
 
     private void OnDestroy()
     {
         if (_equipment != null)
-            _equipment.EquipmentChanged -= DrawSlots;
+            _equipment.EquipmentChanged -= OnEquipmentChanged;
+    }
+    public void OnEquipmentChanged(EquipmentType equipmentType, Item newItem)
+    {
+        DrawSlots();
     }
 
     private void DrawSlots()

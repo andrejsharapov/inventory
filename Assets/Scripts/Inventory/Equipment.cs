@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Resources;
 using UnityEngine;
 using static Item;
 
@@ -10,13 +11,15 @@ public class Equipment
 
     public IReadOnlyDictionary<EquipmentType, EquipmentSlot> Slots => _slots;
 
-    public event Action EquipmentChanged;
+    public event Action<EquipmentType, Item> EquipmentChanged;
 
     public Equipment(Inventory inventory)
     {
         _slots = Enum.GetValues(typeof(EquipmentType))
             .Cast<EquipmentType>()
             .ToDictionary(type => type, type => new EquipmentSlot(inventory, type));
+
+
     }
 
     public bool Unequip(EquipmentType slotType) => Unequip(_slots[slotType]);
@@ -25,9 +28,15 @@ public class Equipment
         if (slot.Item == null)
             return false;
 
+        var item = slot.Item.ItemConfig;
         slot.Clear();
-        EquipmentChanged?.Invoke();
+        OnEquipmentChanged(item.equipmentType, null);
         return true;
+    }
+
+    public void OnEquipmentChanged(EquipmentType equipmentType,Item newItem)
+    {
+        EquipmentChanged?.Invoke(equipmentType, newItem);
     }
 
 
