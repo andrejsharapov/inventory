@@ -99,10 +99,10 @@ public class InventorySlotView : MonoBehaviour, IBeginDragHandler, IDragHandler,
             return;
 
         if (_inventorySlot is EquipmentSlot equipmentSlot && (draggedItem is EquipableItem == false || draggedItem.ItemConfig?.equipmentType != equipmentSlot.SlotType))
-            return; // Проверка -> Может ли переносимый нами предмет лечь в эквип ячейку
+            return; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ -> пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
         if (_inventorySlot.Item != null && sourceSlotView.InventorySlot is EquipmentSlot sourceEquipmentSlot && (_inventorySlot.Item is EquipableItem == false || _inventorySlot.Item.ItemConfig?.equipmentType != sourceEquipmentSlot.SlotType))
-            return; // Проверка -> Может ли предмет в ячейке перенестись в эквип ячейку
+            return; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ -> пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
         _inventoryView.SetSelectedSlot(this);
         _inventorySlot.Inventory.MoveOrSwapItems(sourceSlotView.InventorySlot, _inventorySlot);
@@ -152,7 +152,7 @@ public class InventorySlotView : MonoBehaviour, IBeginDragHandler, IDragHandler,
             StopCoroutine(_longPressCoroutine);
             _longPressCoroutine = null;
         }
-        InventoryModalUI.Hide();
+        InventoryModalView.Hide();
     }
 
     private IEnumerator LongPressRoutine(PointerEventData eventData)
@@ -180,6 +180,6 @@ public class InventorySlotView : MonoBehaviour, IBeginDragHandler, IDragHandler,
         Vector2 slotSize = ((RectTransform)transform).rect.size;
         Vector3 rightOffset = worldPos + transform.right * slotSize.x * 0.6f;
 
-        InventoryModalUI.Show(_inventorySlot, (RectTransform)transform);
+        InventoryModalView.Show(_inventorySlot, (RectTransform)transform);
     }
 }

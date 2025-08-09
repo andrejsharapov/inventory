@@ -32,7 +32,7 @@ public static class InventoryItemFactory
                 return new ResourceItem(item);
 
             case ItemType.Recipe:
-                return new ResourceItem(item);
+                return new RecipeItem(item);
 
             case ItemType.Building:
                 return new ResourceItem(item);

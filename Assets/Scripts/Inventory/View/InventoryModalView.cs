@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using TMPro;
 
-public class InventoryModalUI : MonoBehaviour
+public class InventoryModalView : MonoBehaviour
 {
     [Header("Content")]
     [SerializeField] private TextMeshProUGUI _name;
@@ -13,8 +13,8 @@ public class InventoryModalUI : MonoBehaviour
     [SerializeField] private Canvas _canvas;
     [SerializeField] private RectTransform _panel;
 
-    private static InventoryModalUI _instance;
-    public static InventoryModalUI Instance => _instance;
+    private static InventoryModalView _instance;
+    public static InventoryModalView Instance => _instance;
 
     private void Awake()
     {
