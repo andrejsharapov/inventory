@@ -18,6 +18,7 @@ public class Inventory : IDisposable
     public event Action InventoryChanged;
 
 
+
     private void OnEquipmentChanged(EquipmentType equipmentType, Item newItem)
     {
         InventoryChanged?.Invoke();
@@ -55,6 +56,93 @@ public class Inventory : IDisposable
 
         InventoryChanged?.Invoke();
     }
+
+
+    // public bool CanQuestBeCompleted(Quest quest)
+    // {
+    //     // Копируем текущие слоты (симулируем инвентарь)
+    //     List<InventorySlot> simulatedInventory = Slots
+    //         .Select(s =>
+    //         {
+    //             var copy = new InventorySlot(this, s.OwnerBag);
+    //             copy.SetItem(s.Item, s.Quantity);
+    //             return copy;
+    //         })
+    //         .ToList();
+
+    //     int slotLimit = simulatedInventory.Count; // Кол-во слотов
+
+    //     foreach (var reward in quest.itemRewards)
+    //     {
+    //         var item = reward.item;
+    //         int quantity = reward.quantity;
+
+    //         if (item == null)
+    //             continue;
+
+    //         int remaining = quantity;
+
+    //         if (item.isStackable)
+    //         {
+    //             // Добавляем в существующие стеки
+    //             for (int i = 0; i < simulatedInventory.Count; i++)
+    //             {
+    //                 var slot = simulatedInventory[i];
+
+    //                 if (slot.Item != null && slot.Item.ItemConfig == item && slot.Quantity < item.maxStackSize)
+    //                 {
+    //                     int space = item.maxStackSize - slot.Quantity;
+    //                     int toAdd = Mathf.Min(remaining, space);
+
+    //                     slot.SetQuantity(slot.Quantity + toAdd);
+    //                     remaining -= toAdd;
+
+    //                     if (remaining == 0)
+    //                         break;
+    //                 }
+    //             }
+
+    //             // Добавляем в пустые слоты
+    //             while (remaining > 0)
+    //             {
+    //                 int emptySlotIndex = simulatedInventory.FindIndex(s => s.Item == null);
+
+    //                 if (emptySlotIndex == -1)
+    //                 {
+    //                     Debug.LogWarning("Недостаточно места в инвентаре для стакуемого предмета!");
+    //                     return false;
+    //                 }
+
+    //                 int stackSize = Mathf.Min(item.maxStackSize, remaining);
+    //                 simulatedInventory[emptySlotIndex].SetItem(InventoryItemFactory.Create(item), stackSize);
+    //                 remaining -= stackSize;
+    //             }
+    //         }
+    //         else
+    //         {
+    //             // Не стакуемые предметы — нужен отдельный слот на каждый
+
+    //             int emptySlots = simulatedInventory.Count(s => s.Item == null);
+
+    //             if (emptySlots < remaining)
+    //             {
+    //                 Debug.LogWarning("Недостаточно места в инвентаре для не стакуемых предметов!");
+    //                 return false;
+    //             }
+
+    //             for (int i = 0; i < simulatedInventory.Count && remaining > 0; i++)
+    //             {
+    //                 if (simulatedInventory[i].Item == null)
+    //                 {
+    //                     simulatedInventory[i].SetItem(InventoryItemFactory.Create(item), 1);
+    //                     remaining--;
+    //                 }
+    //             }
+    //         }
+    //     }
+
+    //     return true;
+    // }
 
     public void RecalculateExtraSlots()
     {
@@ -209,6 +297,7 @@ public class Inventory : IDisposable
                 firstSlot = slot;
         }
 
+        // QuestManager.Instance.ItemGathered(item, quantity);
         if (item is BagItem)
         {
             RecalculateExtraSlots();

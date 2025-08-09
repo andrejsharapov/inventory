@@ -203,10 +203,15 @@ public class InventoryView : MonoBehaviour
 
         if (SelectedSlot.Item is EquipableItem == false || (!isDoubleClicked && isUsable))
         {
+            var itemConfig = SelectedSlot?.Item?.ItemConfig;
+
+            // QuestManager.Instance.ItemUsed(itemConfig, itemConfig.isStackable && SelectedSlot.Quantity > 1 ? -1 : 1);
+
             _inventory.RemoveItemFromSlot(SelectedSlot, 1);
 
-            if (SelectedSlot.Item == null)
-                SetSelectedSlot(null);
+
+                if (SelectedSlot.Item == null)
+                    SetSelectedSlot(null);
         }
         else
         {
