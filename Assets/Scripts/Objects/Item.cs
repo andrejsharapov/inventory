@@ -17,6 +17,7 @@ public class Item : ScriptableObject
 
     [Header("Item Type")]
     public ItemType itemType; // Тип предмета (enum)
+    public EquipmentType equipmentType = EquipmentType.Weapon;
 
     [Header("Bag size")]
     public int bagCapacity = 0; // Вместимость сумки
@@ -56,7 +57,6 @@ public class Item : ScriptableObject
     public int enemyCount = 1; // Сколько целей поражает оружие
     public WeaponType weaponType = WeaponType.OneHand;
     public ArmorType armorType = ArmorType.Helmet;
-    public EquipmentType equipmentType = EquipmentType.Weapon;
 
     [Header("Craft Recipe")]
     public int craftLevel = 1;

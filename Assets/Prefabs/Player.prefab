@@ -386,22 +386,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _equipmentItemViews:
-  - _itemConfig: {fileID: 11400000, guid: a31fb3db076b59a43883bcab1b9e34cb, type: 2}
+  - _itemConfigs:
+    - {fileID: 11400000, guid: a31fb3db076b59a43883bcab1b9e34cb, type: 2}
     _itemObjectInactive: {fileID: 4601546982145818761}
     _itemObjectActive: {fileID: 0}
-  - _itemConfig: {fileID: 11400000, guid: 14aaf8deb99baf74aa5056158b5984e0, type: 2}
+  - _itemConfigs:
+    - {fileID: 11400000, guid: 14aaf8deb99baf74aa5056158b5984e0, type: 2}
+    - {fileID: 11400000, guid: af40ce9779ff34482960de261bab6ab3, type: 2}
     _itemObjectInactive: {fileID: 2554988131581904849}
     _itemObjectActive: {fileID: 569886326234866235}
-  - _itemConfig: {fileID: 11400000, guid: 7f52bcbbdd562394c9ff58268848c219, type: 2}
+  - _itemConfigs:
+    - {fileID: 11400000, guid: 7f52bcbbdd562394c9ff58268848c219, type: 2}
     _itemObjectInactive: {fileID: 2081411667078266001}
     _itemObjectActive: {fileID: 569886326234866235}
-  - _itemConfig: {fileID: 11400000, guid: 215cebeb07290634c828ab1938755f69, type: 2}
+  - _itemConfigs:
+    - {fileID: 11400000, guid: 215cebeb07290634c828ab1938755f69, type: 2}
     _itemObjectInactive: {fileID: 8940158912584238448}
     _itemObjectActive: {fileID: 0}
-  - _itemConfig: {fileID: 11400000, guid: 4dc93ceb5091ce148a3a0e5840dcb108, type: 2}
+  - _itemConfigs:
+    - {fileID: 11400000, guid: 4dc93ceb5091ce148a3a0e5840dcb108, type: 2}
     _itemObjectInactive: {fileID: 8254841317114054817}
     _itemObjectActive: {fileID: 0}
-  - _itemConfig: {fileID: 11400000, guid: 21f4a816a7f02264dbab44344a901908, type: 2}
+  - _itemConfigs:
+    - {fileID: 11400000, guid: 21f4a816a7f02264dbab44344a901908, type: 2}
     _itemObjectInactive: {fileID: 9028856043454877542}
     _itemObjectActive: {fileID: 0}
 --- !u!1 &5754215715167895632
