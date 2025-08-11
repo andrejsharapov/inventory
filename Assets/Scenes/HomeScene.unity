@@ -1923,6 +1923,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 569886326234866235, guid: 6b767bbccf3a649d1aead5970af26d7b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1584343827295729181, guid: 6b767bbccf3a649d1aead5970af26d7b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.135
@@ -1970,6 +1974,10 @@ PrefabInstance:
     - target: {fileID: 2335531749076127758, guid: 6b767bbccf3a649d1aead5970af26d7b, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2554988131581904849, guid: 6b767bbccf3a649d1aead5970af26d7b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4813670146852276535, guid: 6b767bbccf3a649d1aead5970af26d7b, type: 3}
       propertyPath: '_equipmentItemViews.Array.data[1]._itemConfigs.Array.data[1]'
