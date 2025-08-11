@@ -66,8 +66,16 @@ public class EquipmentItemViews : MonoBehaviour
         }
     }
 
+    [SerializeField] private bool _autoDisableAll = true;
+
     [SerializeField] private EquipmentItemView[] _equipmentItemViews;
     private Inventory _inventory;
+
+    void OnValidate()
+    {
+        if (Application.isPlaying == false && _autoDisableAll)
+            DisableAll();
+    }
 
 
     void OnDestroy()
