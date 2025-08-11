@@ -990,7 +990,7 @@ PrefabInstance:
     - target: {fileID: 1482348683209435496, guid: b383b7cb6f5cd0d49bbbe09e7d6deafd, type: 3}
       propertyPath: _startItems.Array.data[10]._item
       value: 
-      objectReference: {fileID: 11400000, guid: af40ce9779ff34482960de261bab6ab3, type: 2}
+      objectReference: {fileID: 11400000, guid: c9c1d8b2ddd5d354aa09f1b7562a998b, type: 2}
     - target: {fileID: 1482348683209435496, guid: b383b7cb6f5cd0d49bbbe09e7d6deafd, type: 3}
       propertyPath: _startItems.Array.data[9]._quantity
       value: 1
@@ -1965,12 +1965,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2081411667078266001, guid: 6b767bbccf3a649d1aead5970af26d7b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2335531749076127758, guid: 6b767bbccf3a649d1aead5970af26d7b, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4813670146852276535, guid: 6b767bbccf3a649d1aead5970af26d7b, type: 3}
+      propertyPath: '_equipmentItemViews.Array.data[1]._itemConfigs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c9c1d8b2ddd5d354aa09f1b7562a998b, type: 2}
     - target: {fileID: 7679479626217494880, guid: 6b767bbccf3a649d1aead5970af26d7b, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.027
