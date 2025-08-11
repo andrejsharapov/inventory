@@ -6,13 +6,13 @@ public class EquipmentItemViews : MonoBehaviour
     [System.Serializable]
     public class EquipmentItemView
     {
-        [SerializeField] private Item _itemConfig;
+        [SerializeField] private Item[] _itemConfigs;
 
         [Space]
         [SerializeField] private GameObject _itemObjectInactive;
         [SerializeField] private GameObject _itemObjectActive;
 
-        public Item ItemConfig => _itemConfig;
+        public Item[] ItemConfigs => _itemConfigs;
         public GameObject ItemObjectInactive => _itemObjectInactive;
         public GameObject ItemObjectActive => _itemObjectActive;
 
@@ -55,21 +55,37 @@ public class EquipmentItemViews : MonoBehaviour
             if (_itemObjectInactive)
                 _itemObjectInactive.SetActive(active && !IsEquipedActive);
         }
+
+        public bool HasItemConfig(Item itemConfig)
+        {
+            foreach (var item in ItemConfigs)
+                if (item == itemConfig)
+                    return true;
+
+            return false;
+        }
     }
+
+    [SerializeField] private bool _autoDisableAll = true;
 
     [SerializeField] private EquipmentItemView[] _equipmentItemViews;
     private Inventory _inventory;
 
-
-    void Update()
+    void OnValidate()
     {
-        if (Input.GetKeyDown(KeyCode.G))
-            SwitchEquipActiveItem(Item.EquipmentType.Weapon);
+        if (Application.isPlaying == false && _autoDisableAll)
+            DisableAll();
     }
+
 
     void OnDestroy()
     {
         Unsubscribe();
+    }
+
+    void Awake()
+    {
+        DisableAll();
     }
 
     void Start()
@@ -91,19 +107,26 @@ public class EquipmentItemViews : MonoBehaviour
             OnEquipmentChanged(slot.Key, slot.Value?.Item?.ItemConfig);
         }
     }
+    void DisableAll()
+    {
+        foreach (var item in _equipmentItemViews)
+            item.SetActive(false);
+    }
 
     EquipmentItemView[] GetItemViewsByEquipmentType(Item.EquipmentType equipmentType)
     {
         List<EquipmentItemView> items = new();
 
-        foreach (var item in _equipmentItemViews)
+        foreach (var itemView in _equipmentItemViews)
         {
-            var itemConfig = item.ItemConfig;
+            if (itemView == null) continue;
+            foreach (var itemConfig in itemView.ItemConfigs)
+            {
+                if (itemConfig == null) continue;
 
-            if (itemConfig == null) continue;
-
-            if (itemConfig.equipmentType == equipmentType)
-                items.Add(item);
+                if (itemConfig.equipmentType == equipmentType)
+                    items.Add(itemView);
+            }
         }
 
         return items.ToArray();
@@ -154,9 +177,19 @@ public class EquipmentItemViews : MonoBehaviour
     {
         var items = GetItemViewsByEquipmentType(equipmentType);
 
+        EquipmentItemView foundedWeapon = null;
+
         foreach (var item in items)
         {
-            item.SetActive(itemConfig == item.ItemConfig);
+            if (item == null) continue;
+            
+            item.SetActive(false);
+
+            if (foundedWeapon == null && item.HasItemConfig(itemConfig))
+                foundedWeapon = item;
         }
+
+        if(foundedWeapon != null)
+            foundedWeapon.SetActive(true);
     }
 }
