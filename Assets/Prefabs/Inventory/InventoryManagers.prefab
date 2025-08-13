@@ -68,6 +68,8 @@ MonoBehaviour:
     _quantity: 1
   - _item: {fileID: 11400000, guid: 4dc93ceb5091ce148a3a0e5840dcb108, type: 2}
     _quantity: 1
+  - _item: {fileID: 11400000, guid: 65f20848b7fa34ac1b8c0e1c7b0cbce0, type: 2}
+    _quantity: 1
   _slotsCount: 10
 --- !u!114 &7797372187137817058
 MonoBehaviour:

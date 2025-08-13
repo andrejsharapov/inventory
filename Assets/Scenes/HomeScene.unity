@@ -1523,6 +1523,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5861564153956878870, guid: b383b7cb6f5cd0d49bbbe09e7d6deafd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5953683192372369830, guid: b383b7cb6f5cd0d49bbbe09e7d6deafd, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -1815,6 +1819,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory
       objectReference: {fileID: 0}
+    - target: {fileID: 9051638093682494979, guid: b383b7cb6f5cd0d49bbbe09e7d6deafd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9141883380953863065, guid: b383b7cb6f5cd0d49bbbe09e7d6deafd, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -1965,11 +1973,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2081411667078266001, guid: 6b767bbccf3a649d1aead5970af26d7b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2335531749076127758, guid: 6b767bbccf3a649d1aead5970af26d7b, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2335531749076127758, guid: 6b767bbccf3a649d1aead5970af26d7b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7679479626217494880, guid: 6b767bbccf3a649d1aead5970af26d7b, type: 3}
       propertyPath: m_LocalPosition.y
