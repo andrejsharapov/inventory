@@ -380,7 +380,7 @@ public class Inventory : IDisposable
         }
         else if (from is EquipmentSlot)
         {
-            Equipment.OnEquipmentChanged(to.Item.ItemConfig.equipmentType, null);
+            Equipment.OnEquipmentChanged(to.Item.ItemConfig.equipmentType, from?.Item?.ItemConfig);
         }
         else
             InventoryChanged?.Invoke();

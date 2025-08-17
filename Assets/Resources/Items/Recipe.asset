@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d843aac4d41bd6e489887b92b95cece5, type: 3}
-  m_Name: Test Axe
+  m_Name: Recipe
   m_EditorClassIdentifier: 
-  itemType: 1
-  equipmentType: 0
+  itemType: 8
   bagCapacity: 0
   isStackable: 0
   maxStackSize: 1
-  itemName: "\u0422\u043E\u043F\u043E\u0440"
+  itemName: "\u0428\u043B\u0435\u043C"
   prefab: {fileID: 919132149155446097, guid: 5785aab4ff0cde64cbd2ff4ce694a9e9, type: 3}
-  icon: {fileID: 21300000, guid: c6c0772b9894fb1479bbee07f61899ef, type: 3}
+  icon: {fileID: 21300000, guid: f444db7c25226d445b9128d9ac0b4597, type: 3}
   description: 
   itemRarityID: 0
   itemRarityName: 0
@@ -39,6 +38,7 @@ MonoBehaviour:
   enemyCount: 1
   weaponType: 0
   armorType: 0
+  equipmentType: 5
   craftLevel: 1
   craftCategory: 0
   craftItem: {fileID: 0}

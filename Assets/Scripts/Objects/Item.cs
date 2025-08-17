@@ -76,31 +76,31 @@ public class Item : ScriptableObject
         public Item item; // Ссылка на Item (ингредиент)
         public int count = 1; // Количество необходимого ингредиента
     }
-
+    
     public virtual void Use(GameObject user)
     {
-    //     // Базовая реализация Use() (может быть переопределена в дочерних классах)
-    //     Debug.Log("Using: " + itemName);
+        //     // Базовая реализация Use() (может быть переопределена в дочерних классах)
+        //     Debug.Log("Using: " + itemName);
 
-    //     // Добавляем логику для типа Healing
-    //     if (itemType == ItemType.Healing)
-    //     {
-    //         Debug.Log("Used a healing item: " + itemName);
+        //     // Добавляем логику для типа Healing
+        //     if (itemType == ItemType.Healing)
+        //     {
+        //         Debug.Log("Used a healing item: " + itemName);
 
-    //         // Получаем компонент Health у пользователя
-    //         Health health = user.GetComponent<Health>();
+        //         // Получаем компонент Health у пользователя
+        //         Health health = user.GetComponent<Health>();
 
-    //         if (health != null)
-    //         {
-    //             health.Heal(healthRestore); // Исцеляем игрока
-    //             Hunger.Instance.IncreaseHunger(hungerRestore); // Восполняем голод
-    //             Thirst.Instance.IncreaseThirst(thirstRestore); // Восполняем жажду
-    //             EnergyManager.Instance.UseEnergy(energyRestore); // Восполняем энергию
-    //         }
-    //         else
-    //         {
-    //             Debug.LogWarning("No Health component found on user: " + user.name);
-    //         }
-    //     }
+        //         if (health != null)
+        //         {
+        //             health.Heal(healthRestore); // Исцеляем игрока
+        //             Hunger.Instance.IncreaseHunger(hungerRestore); // Восполняем голод
+        //             Thirst.Instance.IncreaseThirst(thirstRestore); // Восполняем жажду
+        //             EnergyManager.Instance.UseEnergy(energyRestore); // Восполняем энергию
+        //         }
+        //         else
+        //         {
+        //             Debug.LogWarning("No Health component found on user: " + user.name);
+        //         }
+        //     }
     }
 }

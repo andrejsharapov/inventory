@@ -10,18 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d843aac4d41bd6e489887b92b95cece5, type: 3}
-  m_Name: Test Bag
+  m_Name: Bag
   m_EditorClassIdentifier: 
   itemType: 3
-  bagCapacity: 5
+  equipmentType: 0
+  bagCapacity: 7
   isStackable: 0
   maxStackSize: 1
-  itemName: "\u0411\u0440\u0435\u0432\u043D\u043E"
+  itemName: Bag
   prefab: {fileID: 4894368541190961310, guid: a6faf2975f41d5e4c823fef39751b2be, type: 3}
-  icon: {fileID: 21300000, guid: a6c56474666ce0647bdb766e9b4764b3, type: 3}
-  description: "\u0421\u044B\u0440\u044C\u0451 \u0434\u043B\u044F \u0441\u0442\u0440\u043E\u0438\u0442\u0435\u043B\u044C\u0441\u0442\u0432\u0430,
-    \u0438\u0437\u0433\u043E\u0442\u043E\u0432\u043B\u0435\u043D\u0438\u044F \u043E\u0440\u0443\u0436\u0438\u044F
-    \u0438 \u0440\u0430\u0437\u0432\u0435\u0434\u0435\u043D\u0438\u044F \u043A\u043E\u0441\u0442\u0440\u0430."
+  icon: {fileID: 21300000, guid: f02d6ccb103b65544923845ab97e9171, type: 3}
+  description: 
   itemRarityID: 0
   itemRarityName: 0
   itemRarity: 0
@@ -40,7 +39,6 @@ MonoBehaviour:
   enemyCount: 1
   weaponType: 0
   armorType: 0
-  equipmentType: 0
   craftLevel: 1
   craftCategory: 0
   craftItem: {fileID: 0}

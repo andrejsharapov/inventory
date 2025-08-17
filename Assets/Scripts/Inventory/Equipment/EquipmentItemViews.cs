@@ -1,195 +1,282 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EquipmentItemViews : MonoBehaviour
 {
+    [SerializeField] private EquipmentItemView[] _equipmentItemViews;
+
+    private Inventory _inventory;
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        foreach (var itemView in _equipmentItemViews)
+        {
+            foreach (Transform child in itemView.ActiveParent)
+                child.gameObject.SetActive(false);
+            foreach (Transform child in itemView.InactiveParent)
+                child.gameObject.SetActive(false);
+
+            if (itemView.ActiveParent)
+                itemView.ActiveParent.gameObject.SetActive(true);
+
+            if (itemView.InactiveParent)
+                itemView.InactiveParent.gameObject.SetActive(true);
+        }
+    }
+#endif
+
+    void Start()
+    {
+        _inventory = InventorySession.Instance.PlayerInventory;
+
+        foreach (var itemView in _equipmentItemViews)
+            itemView.Initialize();
+            
+        Subscribe();
+        GetAndSetEquipment();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+            SwitchActive(Item.EquipmentType.Weapon);
+    }
+
+    private void GetAndSetEquipment()
+    {
+        var slots = _inventory?.Equipment?.Slots;
+        if (slots == null) return;
+
+        foreach (var slot in slots)
+            OnEquipmentChanged(slot.Key, slot.Value?.Item?.ItemConfig);
+    }
+
+    private void OnEquipmentChanged(Item.EquipmentType type, Item item)
+    {
+        SetEquiped(type,item, true);
+    }
+
+    private void Subscribe()
+    {
+        if (_inventory?.Equipment != null)
+            _inventory.Equipment.EquipmentChanged += OnEquipmentChanged;
+    }
+
+    private void Unsubscribe()
+    {
+        if (_inventory?.Equipment != null)
+            _inventory.Equipment.EquipmentChanged -= OnEquipmentChanged;
+    }
+
+    public void SetActive(Item.EquipmentType equipmentType, bool active)
+    {
+        var items = GetItemsByEquipmentType(equipmentType);
+
+        foreach (var item in items)
+        {
+            if (item.IsEquiped)
+            {
+                item.SetActive(active);
+            }
+        }
+    }
+    public bool SwitchActive(Item.EquipmentType equipmentType)
+    {
+        var items = GetItemsByEquipmentType(equipmentType);
+
+        foreach (var item in items)
+        {
+            if (item.IsEquiped)
+            {
+                item.SwitchActive();
+                return item.IsActive;
+            }
+        }
+
+        return false;
+    }
+
+    public void SetEquiped(Item.EquipmentType equipmentType, Item itemConfig, bool equiped)
+    {
+        var items = GetItemsByEquipmentType(equipmentType);
+
+        foreach (var item in items)
+        {
+            item.SetEquiped(itemConfig && itemConfig == item.ItemConfig);
+        }
+    }
+
+    private EquipmentItem[] GetItemsByEquipmentType(Item.EquipmentType equipmentType)
+    {
+        List<EquipmentItem> equipmentItems = new();
+
+        foreach (var itemView in _equipmentItemViews)
+        {
+            var items = itemView.GetItemsByEquipmentType(equipmentType);
+
+            foreach (var item in items)
+                equipmentItems.Add(item);
+        }
+
+        return equipmentItems.ToArray();
+    }
+
+
     [System.Serializable]
     public class EquipmentItemView
     {
         [SerializeField] private Item[] _itemConfigs;
 
         [Space]
-        [SerializeField] private GameObject _itemObjectInactive;
-        [SerializeField] private GameObject _itemObjectActive;
+        [SerializeField] private Transform _activeParent;
+        [SerializeField] private Transform _inactiveParent;
 
-        public Item[] ItemConfigs => _itemConfigs;
-        public GameObject ItemObjectInactive => _itemObjectInactive;
-        public GameObject ItemObjectActive => _itemObjectActive;
+        private Dictionary<Item, EquipmentItem> _equipmentItems;
 
-        public bool IsEquipedActive { get; private set; } = false;
-        public bool IsEquiped { get; private set; } = false;
+        public readonly Dictionary<Item, EquipmentItem> EquipmentItems;
+        public Transform ActiveParent => _activeParent;
+        public Transform InactiveParent => _inactiveParent;
 
-        public bool SetEquipActive(bool equip)
+        public void Initialize()
         {
-            var fromObject = equip ? _itemObjectInactive : _itemObjectActive;
-            var toObject = equip ? _itemObjectActive : _itemObjectInactive;
+            CreateEquipments();
 
-            if (fromObject == null || toObject == null)
-                return false;
+            if (_activeParent)
+                _activeParent.gameObject.SetActive(true);
 
-            if (fromObject.activeInHierarchy)
+            if (_inactiveParent)
+                _inactiveParent.gameObject.SetActive(true);
+
+            foreach (var kvp in _equipmentItems)
+                {
+                    var key = kvp.Key;
+                    var value = kvp.Value;
+
+                    Debug.Log($"{key} => {value.ItemConfig.itemName} (active found: {value?.ActivePrefab != null} | inactive found: {value?.InactivePrefab != null})");
+                }
+        }
+
+        private void CreateEquipments()
+        {
+            _equipmentItems = new();
+
+            foreach (var itemConfig in _itemConfigs)
             {
-                toObject.SetActive(true);
-                fromObject.SetActive(false);
+                if (itemConfig == null || itemConfig.prefab == null) continue;
 
-                IsEquipedActive = equip;
+                string prefabName = itemConfig.prefab.name;
 
-                return true;
+                GameObject activePrefab = null;
+                GameObject inactivePrefab = null;
+
+                foreach (Transform child in _inactiveParent)
+                {
+                    if (child.name == prefabName || child.name == prefabName + "(Clone)")
+                    {
+                        inactivePrefab = child.gameObject;
+                        break;
+                    }
+                }
+
+                if (inactivePrefab == null)
+                    continue;
+
+                foreach (Transform child in _activeParent)
+                {
+                    if (child.name == prefabName || child.name == prefabName + "(Clone)")
+                    {
+                        activePrefab = child.gameObject;
+                        break;
+                    }
+                }
+
+                var equipmentItem = new EquipmentItem(itemConfig, inactivePrefab, activePrefab);
+
+                _equipmentItems[itemConfig] = equipmentItem;
+            }
+        }
+
+        public bool TryGetItem(Item itemConfig, out EquipmentItem equipmentItem)
+        {
+            equipmentItem = null;
+
+            if (itemConfig == null || _equipmentItems.ContainsKey(itemConfig) == false) return false;
+
+            equipmentItem = _equipmentItems[itemConfig];
+
+            return true;
+        }
+
+        public EquipmentItem[] GetItemsByEquipmentType(Item.EquipmentType equipmentType)
+        {
+            List<EquipmentItem> equipmentItems = new();
+
+            foreach (var kvp in _equipmentItems)
+            {
+                var key = kvp.Key;
+                var value = kvp.Value;
+
+                if (key.equipmentType == equipmentType)
+                    equipmentItems.Add(value);
             }
 
-            IsEquipedActive = false;
+            return equipmentItems.ToArray();
+        }
+    }
 
-            return false;
+    public class EquipmentItem
+    {
+        private GameObject _activePrefab;
+        private GameObject _inactivePrefab;
+
+        private Item _itemConfig;
+
+        private bool _isEquiped;
+        private bool _isActive;
+
+        public GameObject ActivePrefab => _activePrefab;
+        public GameObject InactivePrefab => _inactivePrefab;
+        public Item ItemConfig => _itemConfig;
+        public bool IsEquiped => _isEquiped;
+        public bool IsActive => _isActive;
+
+
+        public EquipmentItem(Item itemConfig, GameObject inactivePrefab, GameObject activePrefab = null)
+        {
+            _activePrefab = activePrefab;
+            _inactivePrefab = inactivePrefab;
+            _itemConfig = itemConfig;
+        }
+
+        public void SetEquiped(bool equiped)
+        {
+            if (_activePrefab)
+                _activePrefab.SetActive(false);
+            if (_inactivePrefab)
+                _inactivePrefab.SetActive(equiped);
+
+            _isActive = false;
+            _isEquiped = equiped;
         }
 
         public void SetActive(bool active)
         {
-            if (active == false)
-                IsEquipedActive = false;
+            if (_activePrefab == false || _inactivePrefab == false) return;
 
-            IsEquiped = active;
+            if (!_isEquiped) return;
 
-            if (_itemObjectActive)
-                _itemObjectActive.SetActive(active && IsEquipedActive);
+            _activePrefab.SetActive(active);
+            _inactivePrefab.SetActive(!active);
 
-            if (_itemObjectInactive)
-                _itemObjectInactive.SetActive(active && !IsEquipedActive);
+            _isActive = active;
+            _isEquiped = true;
         }
 
-        public bool HasItemConfig(Item itemConfig)
+        public void SwitchActive()
         {
-            foreach (var item in ItemConfigs)
-                if (item == itemConfig)
-                    return true;
-
-            return false;
+            SetActive(!_isActive);
         }
-    }
-
-    [SerializeField] private bool _autoDisableAll = true;
-
-    [SerializeField] private EquipmentItemView[] _equipmentItemViews;
-    private Inventory _inventory;
-
-    void OnValidate()
-    {
-        if (Application.isPlaying == false && _autoDisableAll)
-            DisableAll();
-    }
-
-
-    void OnDestroy()
-    {
-        Unsubscribe();
-    }
-
-    void Awake()
-    {
-        DisableAll();
-    }
-
-    void Start()
-    {
-        _inventory = InventorySession.Instance.PlayerInventory;
-        Subscribe();
-
-        GetAndSetEquipment();
-    }
-
-    void GetAndSetEquipment()
-    {
-        var slots = _inventory?.Equipment?.Slots;
-
-        if (slots == null) return;
-
-        foreach (var slot in slots)
-        {
-            OnEquipmentChanged(slot.Key, slot.Value?.Item?.ItemConfig);
-        }
-    }
-    void DisableAll()
-    {
-        foreach (var item in _equipmentItemViews)
-            item.SetActive(false);
-    }
-
-    EquipmentItemView[] GetItemViewsByEquipmentType(Item.EquipmentType equipmentType)
-    {
-        List<EquipmentItemView> items = new();
-
-        foreach (var itemView in _equipmentItemViews)
-        {
-            if (itemView == null) continue;
-            foreach (var itemConfig in itemView.ItemConfigs)
-            {
-                if (itemConfig == null) continue;
-
-                if (itemConfig.equipmentType == equipmentType)
-                    items.Add(itemView);
-            }
-        }
-
-        return items.ToArray();
-    }
-
-    public bool SwitchEquipActiveItem(Item.EquipmentType equipmentType)
-    {
-        var item = GetEquipedItemView(equipmentType);
-
-        if (item != null)
-            item.SetEquipActive(!item.IsEquipedActive);
-
-        return item != null;
-    }
-    public bool SetEquipActiveItem(Item.EquipmentType equipmentType, bool active)
-    {
-        var item = GetEquipedItemView(equipmentType);
-
-        if (item != null)
-            item.SetEquipActive(active);
-
-        return item != null;
-    }
-
-    private void Subscribe()
-    {
-        _inventory.Equipment.EquipmentChanged += OnEquipmentChanged;
-    }
-    private void Unsubscribe()
-    {
-        _inventory.Equipment.EquipmentChanged += OnEquipmentChanged;
-    }
-
-    public EquipmentItemView GetEquipedItemView(Item.EquipmentType equipmentType)
-    {
-        var items = GetItemViewsByEquipmentType(equipmentType);
-
-        foreach (var item in items)
-        {
-            if (item.IsEquiped)
-                return item;
-        }
-
-        return null;
-    }
-
-    private void OnEquipmentChanged(Item.EquipmentType equipmentType, Item itemConfig)
-    {
-        var items = GetItemViewsByEquipmentType(equipmentType);
-
-        EquipmentItemView foundedWeapon = null;
-
-        foreach (var item in items)
-        {
-            if (item == null) continue;
-            
-            item.SetActive(false);
-
-            if (foundedWeapon == null && item.HasItemConfig(itemConfig))
-                foundedWeapon = item;
-        }
-
-        if(foundedWeapon != null)
-            foundedWeapon.SetActive(true);
     }
 }

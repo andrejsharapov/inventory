@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Helmet
   m_EditorClassIdentifier: 
   itemType: 2
+  equipmentType: 5
   bagCapacity: 0
   isStackable: 0
   maxStackSize: 1
@@ -38,7 +39,6 @@ MonoBehaviour:
   enemyCount: 1
   weaponType: 0
   armorType: 0
-  equipmentType: 5
   craftLevel: 1
   craftCategory: 0
   craftItem: {fileID: 0}

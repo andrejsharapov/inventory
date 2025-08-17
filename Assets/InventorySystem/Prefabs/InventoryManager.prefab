@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7797372187137817058}
   - component: {fileID: 4982570512735835924}
   m_Layer: 0
-  m_Name: InventoryManagers
+  m_Name: InventoryManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,6 +67,8 @@ MonoBehaviour:
   - _item: {fileID: 11400000, guid: 69affcf554fc2b74d8828d5265a1cb93, type: 2}
     _quantity: 1
   - _item: {fileID: 11400000, guid: 4dc93ceb5091ce148a3a0e5840dcb108, type: 2}
+    _quantity: 1
+  - _item: {fileID: 11400000, guid: 65f20848b7fa34ac1b8c0e1c7b0cbce0, type: 2}
     _quantity: 1
   _slotsCount: 10
 --- !u!114 &7797372187137817058
